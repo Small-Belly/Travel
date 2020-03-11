@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <swiper :options="swiperOption" ref="mySwiper">
+    <swiper :options="swiperOption" ref="mySwiper" v-if="showSwiper">
       <swiper-slide class="swiper-item" v-for="item of swiperList" :key="item.id">
         <img class="swiper-img" :src="item.imgUrl" alt />
       </swiper-slide>
@@ -17,23 +17,32 @@ export default {
         pagination: ".swiper-pagination",
         loop: true, //支持循环轮播
         autoplay: 2000
-      },
+      } /* ,
       swiperList: [
         //循环播放
         {
           id: "0001",
-          imgUrl: require("@/assets/img/banner_1.png")
+          imgUrl: require("img/banner_1.png")
         },
         {
           id: "0002",
-          imgUrl: require("@/assets/img/banner_2.png")
+          imgUrl: require("img/banner_1.png")
         },
         {
           id: "0003",
-          imgUrl: require("@/assets/img/banner_3.png")
+          imgUrl: require("img/banner_1.png")
         }
-      ]
+      ] */
     };
+  },
+  computed: {
+    //防止一进去是最后一张
+    showSwiper() {
+      return this.swiperList.length;
+    }
+  },
+  props: {
+    swiperList: Array
   }
 };
 </script>

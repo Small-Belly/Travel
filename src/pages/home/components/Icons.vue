@@ -18,76 +18,28 @@ export default {
   data() {
     return {
       swiperOption: {
-        //允许滑动
-        // autoplay: true
-      },
-      iconList: [
-        {
-          id: "0001",
-          imgUrl: require("img/piao.png"),
-          desc: "景点门票"
-        },
-        {
-          id: "0002",
-          imgUrl: require("img/hotel.png"),
-          desc: "酒店"
-        },
-        {
-          id: "0003",
-          imgUrl: require("img/flight.png"),
-          desc: "机票"
-        },
-        {
-          id: "0004",
-          imgUrl: require("img/package.png"),
-          desc: "度假"
-        },
-        {
-          id: "0005",
-          imgUrl: require("img/train.png"),
-          desc: "火车票"
-        },
-
-        {
-          id: "0006",
-          imgUrl: require("img/hotel.png"),
-          desc: "酒店"
-        },
-        {
-          id: "0007",
-          imgUrl: require("img/flight.png"),
-          desc: "机票"
-        },
-        {
-          id: "0008",
-          imgUrl: require("img/package.png"),
-          desc: "度假"
-        },
-        {
-          id: "0009",
-          imgUrl: require("img/train.png"),
-          desc: "火车票"
-        },
-        {
-          id: "00010",
-          imgUrl: require("img/piao.png"),
-          desc: "景点门票"
-        }
-      ]
+        //不自动滚动
+        autoplay: false
+      }
     };
+  },
+  props: {
+    iconList: Array
   },
   //计算属性
   computed: {
     pages() {
       const pages = [];
-      this.iconList.forEach((item, index) => {
-        //页码,向下取
-        const page = Math.floor(index / 8);
-        if (!pages[page]) {
-          pages[page] = [];
-        }
-        pages[page].push(item);
-      });
+      if (this.iconList) {
+        this.iconList.forEach((item, index) => {
+          //页码,向下取
+          const page = Math.floor(index / 8);
+          if (!pages[page]) {
+            pages[page] = [];
+          }
+          pages[page].push(item);
+        });
+      }
       return pages;
     }
   }

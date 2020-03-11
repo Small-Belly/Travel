@@ -26,7 +26,10 @@
 <script>
 export default {
   name: "HomeRecommend",
-  data() {
+  props: {
+    recommendList: Array
+  }
+  /* data() {
     return {
       recommendList: [
         {
@@ -63,7 +66,7 @@ export default {
         }
       ]
     };
-  }
+  } */
 };
 </script>
 <style lang="stylus" scoped>
@@ -81,41 +84,42 @@ export default {
     display: block;
     display: flex;
     overflow: hidden;
-    height: 1.8rem;
-  }
+    height: 0;
+    padding-bottom: 24%;
 
-  .item-img {
-    width: 1.8rem;
-    height: 1.4rem;
-    padding: 0.1rem;
-    border-radius: 0.2rem 0 0 0.2rem;
-  }
-
-  .item-info {
-    flex: 1;
-    margin: 0.1rem;
-    min-width: 0;
-
-    .item-title {
-      line-height: 0.54rem;
-      font-size: 0.32rem; // 16px
+    .item-img {
+      width: 1.8rem;
+      height: 1.4rem;
+      padding: 0.1rem;
+      border-radius: 0.2rem 0 0 0.2rem;
     }
 
-    .item-desc {
-      color: #555555;
-      line-height: 0.4rem;
-      font-size: 0.28rem;
-      ellipsis();
-      margin-top: 0.1rem;
-    }
+    .item-info {
+      flex: 1;
+      margin: 0.1rem;
+      min-width: 0;
 
-    .item-price {
-      line-height: 0.44rem;
-      color: #ff7400;
-      margin-top: 0.1rem;
+      .item-title {
+        line-height: 0.54rem;
+        font-size: 0.32rem; // 16px
+      }
 
-      em {
-        font-size: 0.38rem;
+      .item-desc {
+        color: #555555;
+        line-height: 0.4rem;
+        font-size: 0.28rem;
+        ellipsis();
+        margin-top: 0.1rem;
+      }
+
+      .item-price {
+        line-height: 0.44rem;
+        color: #ff7400;
+        margin-top: 0.1rem;
+
+        em {
+          font-size: 0.38rem;
+        }
       }
     }
   }

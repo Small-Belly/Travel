@@ -2,7 +2,7 @@
   <div>
     <div class="title">旅行攻略</div>
     <ul class="li-wrapper">
-      <li class="item border-bottom" v-for="item of recommendList" :key="item.id">
+      <li class="item border-bottom" v-for="item of strategyList" :key="item.id">
         <a href="javascript:;" class="item-link">
           <div class="item-img-wrapper">
             <img class="item-img" :src="item.imgUrl" />
@@ -28,7 +28,10 @@
 <script>
 export default {
   name: "HomeStrategy",
-  data() {
+  props: {
+    strategyList: Array
+  }
+  /* data() {
     return {
       recommendList: [
         {
@@ -53,7 +56,7 @@ export default {
         }
       ]
     };
-  }
+  } */
 };
 </script>
 <style lang="stylus" scoped>
