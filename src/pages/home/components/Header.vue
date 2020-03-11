@@ -67,7 +67,7 @@ export default {
       line-height: 0.64rem;
       left: 0.5rem;
       border-radius: 0.1rem; /* 5px */
-      color: #ccc;
+      color: #666;
     }
   }
 
