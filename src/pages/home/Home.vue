@@ -50,7 +50,6 @@ export default {
         this.recommendList = data.recommendList;
         this.strategyList = data.strategyList;
       }
-      console.log(res);
     }
   },
   mounted() {
