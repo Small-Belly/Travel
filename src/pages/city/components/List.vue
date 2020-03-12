@@ -13,28 +13,47 @@
         <div class="title border-topbottom">热门城市</div>
         <div class="button-list">
           <div class="button-wrapper" v-for="item of hot" :key="item.id">
-            <div class="button">{{item.name}}</div>
+            <div class="button">{{ item.name }}</div>
           </div>
         </div>
       </div>
-      <div class="area" v-for="(item ,key) of cities" :key="key">
-        <div class="title border-topbottom">{{key}}</div>
+      <div class="area" v-for="(item, key) of cities" :key="key" :ref="key">
+        <div class="title border-topbottom">{{ key }}</div>
         <div class="item-list">
           <ul>
-            <li class="item" v-for="innerItem of item" :key="innerItem.id">{{innerItem.name}}</li>
+            <li class="item" v-for="innerItem of item" :key="innerItem.id">
+              {{ innerItem.name }}
+            </li>
           </ul>
         </div>
       </div>
     </div>
   </div>
-</template>    
+</template>
 <script>
 import BScroll from "better-scroll";
 export default {
   name: "CityList",
   props: {
     hot: Array,
-    cities: Object
+    cities: Object,
+    //定义接收的数据类型
+    letter: String
+  },
+  watch: {
+    letter() {
+      // console.log(this.letter);
+      if (this.letter) {
+        //每个this.letter 都是被点击的字母
+        // console.log(this.letter);
+        //因为是循环创建的li,$refs
+        //console.log(this.$refs); //A: Array [ div.area ]~~~
+        //console.log(this.$refs[this.letter][0]) 得到DOM
+        const element = this.$refs[this.letter][0];
+        // console.log(element);
+        this.scroll.scrollToElement(element);
+      }
+    }
   },
   //挂载完毕后完成
   mounted() {
