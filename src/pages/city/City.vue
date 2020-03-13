@@ -1,7 +1,7 @@
 <template>
   <div>
     <city-header></city-header>
-    <city-search></city-search>
+    <city-search :cities="cities"></city-search>
     <city-list :cities="cities" :hot="hotCities" :letter="letter"></city-list>
     <city-alphabet
       :cities="cities"
@@ -37,7 +37,7 @@ export default {
     },
     handleGetCityInfoSucc(res) {
       res = res.data;
-      console.log(res);
+      // console.log(res);
       if (res.ret && res.data) {
         const data = res.data;
         this.cities = data.cities;
