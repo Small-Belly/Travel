@@ -28,6 +28,7 @@ export default {
   data() {
     return {
       // city: "",
+      lastCity: "",
       swiperList: [],
       iconList: [],
       recommendList: [],
@@ -37,7 +38,7 @@ export default {
   methods: {
     getHomeInfo() {
       //请求数据,数据获取成功后执行
-      axios.get("/api/index.json").then(this.getHomeInfoSucc);
+      axios.get("/api/index.json?city' + this.city").then(this.getHomeInfoSucc);
     },
     getHomeInfoSucc(res) {
       res = res.data;
@@ -54,10 +55,19 @@ export default {
   },
   mounted() {
     //页面挂载好后执行函数
+    //临时缓冲变量,实现优化
+    this.lastCity = this.city;
     this.getHomeInfo();
+  },
+  activated() {
+    //判断当前显示的城市与上次显示的城市是否相同同,不相同则再发一次ajax请求
+    if (this.lastCity !== this.city) {
+      this.lastCity = this.city;
+      //重新发送一次ajax请求
+      this.getHomeInfo();
+    }
   }
 };
-</script>  
+</script>
 
-<style scoped>
-</style>
+<style scoped></style>
