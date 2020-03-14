@@ -14,6 +14,7 @@
           class="search-item border-bottom"
           v-for="item of list"
           :key="item.id"
+          @click="handleCityClick(item.name)"
         >
           {{ item.name }}
         </li>
@@ -26,6 +27,7 @@
 </template>
 <script>
 import BScroll from "better-scroll";
+import { mapMutations } from "vuex";
 export default {
   name: "CitySearch",
   props: {
@@ -54,10 +56,11 @@ export default {
       this.timer = setTimeout(() => {
         const result = [];
         for (let i in this.cities) {
+          //console.log(i); //ABC
+          // 遍历当前拼音或者字的数据
           this.cities[i].forEach(value => {
-            // 遍历当前拼音或者字的数据
+            //indexOf()>-1 代表有数据
             if (
-              //indexOf()>-1 代表有数据
               value.spell.indexOf(this.keyword) > -1 ||
               value.name.indexOf(this.keyword) > -1
             )
@@ -68,6 +71,17 @@ export default {
         this.list = result;
       }, 100);
     }
+  },
+  methods: {
+    handleCityClick(city) {
+      // this.$store.commit("changeCity", city);
+      this.changeCity(city);
+      this.keyword = "";
+      //页面跳转----编程式跳转
+      this.$router.push("/");
+    },
+    //把mutations映射到这个方法了
+    ...mapMutations(["changeCity"])
   },
   mounted() {
     this.scroll = new BScroll(this.$refs.search);
