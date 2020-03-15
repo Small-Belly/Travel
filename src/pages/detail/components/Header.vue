@@ -40,7 +40,12 @@ export default {
     }
   },
   activated() {
+    //页面展示时绑定
     window.addEventListener("scroll", this.handleScroll);
+  },
+  deactivated() {
+    //页面消失时取消绑定
+    window.removeEventListener("scroll", this.handleScroll);
   }
 };
 </script>
