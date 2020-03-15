@@ -2,24 +2,30 @@
   <div>
     <div class="recommend-title">热销推荐</div>
     <ul>
-      <li class="item border-bottom" v-for="item of recommendList" :key="item.id">
+      <router-link
+        tag="li"
+        class="item border-bottom"
+        v-for="item of recommendList"
+        :key="item.id"
+        :to="'/detail/' + item.id"
+      >
         <a href="javascript:;" class="item-link">
           <img class="item-img" :src="item.imgUrl" />
           <div class="item-info">
-            <p class="item-title">{{item.title}}</p>
-            <p class="item-desc">{{item.desc}}</p>
+            <p class="item-title">{{ item.title }}</p>
+            <p class="item-desc">{{ item.desc }}</p>
             <div class="item-price">
               <span>
                 <em>￥</em>
               </span>
               <span>
-                <em>{{item.price}}</em>
+                <em>{{ item.price }}</em>
                 <span class="unit">起</span>
               </span>
             </div>
           </div>
         </a>
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>
