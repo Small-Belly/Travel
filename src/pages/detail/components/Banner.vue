@@ -1,26 +1,26 @@
 <template>
   <div>
     <div class="banner" @click="handleBannerClick">
-      <swiper :options="swiperOption">
-        <swiper-slide v-for="(item, index) in imgs" :key="index">
+      <swiper :options="swiperOption" v-if="bannerImgs.length">
+        <swiper-slide v-for="(item, index) in bannerImgs" :key="index">
           <img class="banner-img" :src="item" alt />
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
       <div class="txt">
         <div class="id">
-          <span class="tit">产品编号</span>
+          <span class="tit">{{ sightName }}</span>
           <span>805434166</span>
         </div>
         <div class="num">
-          2/10
+          {{ this.bannerImgs.length }}
           <div class="iconfont banner-icon">&#xe609;</div>
         </div>
       </div>
     </div>
     <common-gallary
       @close="handleGallaryClose"
-      :imgs="imgs"
+      :imgs="gallaryImgs"
       v-show="showGallary"
     ></common-gallary>
   </div>
@@ -43,16 +43,13 @@ export default {
         //监听变化,自动刷新
         observeParents: true,
         observer: true
-      },
-      imgs: [
-        "https://img1.qunarzz.com/vs_ceph_vs_tts/313147f7-677f-44bf-a091-6999b113e76e.jpg_r_1280x840x95_a34352bf.jpg",
-        "https://img1.qunarzz.com/vs_ceph_vs_tts/73f93f46-49a2-484b-993c-3d128256e5bb.jpg_r_1280x840x95_a8fed6b2.jpg",
-        "https://img1.qunarzz.com/vs_ceph_vs_tts/700ef324-e4a4-431f-9c07-f32476c8e631.jpg_r_640x420x95_70a8b25a.jpg",
-        "https://img1.qunarzz.com/vs_ceph_vs_tts/8177916d-9b0a-4da7-b5d6-f2a5077ea78e.jpg_r_640x420x95_fd2407e7.jpg",
-        "https://img1.qunarzz.com/vs_ceph_vs_tts/bf0e6371-7085-406f-9ea5-d215f64eba99.jpg_r_640x420x95_2db32056.jpg",
-        "https://img1.qunarzz.com/p/tts5/1705/46/062b56ad1351a202.jpg_r_640x420x95_95979774.jpg"
-      ]
+      }
     };
+  },
+  props: {
+    sightName: String,
+    bannerImgs: Array,
+    gallaryImgs: Array
   },
   methods: {
     handleBannerClick() {
