@@ -85,7 +85,9 @@ export default {
   //挂载完毕后完成
   mounted() {
     //创建实例属性
-    this.scroll = new BScroll(this.$refs.wrapper);
+    this.scroll = new BScroll(this.$refs.wrapper, {
+      click: true
+    });
   }
 };
 </script>
